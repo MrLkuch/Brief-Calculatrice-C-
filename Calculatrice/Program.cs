@@ -1,64 +1,8 @@
 ﻿using System.Diagnostics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-/*void Sum(float? prevCalc = null )
-{
-    string input;
-    float number;
-    bool isInputValid = false;
-    List<float?> numbersList = new List<float?>();
-    float? sum;
-
-    Console.WriteLine("1 --- Addition ---");
-
-    if (prevCalc.HasValue)
-    {
-        numbersList.Add(prevCalc);
-    }
-
-    do
-    {
-        Console.WriteLine("Entrez un chiffre à additionner ou '=' pour arreter");
-        input = Console.ReadLine();
-        isInputValid = float.TryParse(input, out number);
-        if (isInputValid)
-        {
-            numbersList.Add(number);
-        }
-        else
-        {
-            Console.WriteLine("Entrez une donée valide.\n");
-        }
-    } while (input != "=");
-
-    sum = numbersList.Sum();
-
-    Console.WriteLine($"Le résultat est : {sum}\n");
-
-
-    int menuInput;
-    Console.WriteLine("--- Menu ---\n");
-    Console.WriteLine("--- Continuer avec le résultat ?\n");
-    Console.WriteLine("\t1 ---- Addition");
-    Console.WriteLine("\t2 ---- Soustraction");
-    Console.WriteLine("\t3 ---- Multiplication");
-    Console.WriteLine("\t4 ---- Division");
-
-    Console.WriteLine("Faites votre choix : ");
-    menuInput = int.Parse(Console.ReadLine());
-
-    switch (menuInput)
-    {
-        case 1:
-            Console.Clear();
-            Sum(sum);
-            break;
-    }
-}
-*/
-
-
-float? Sum(float? inputNumber)
+// addition function
+float? Add(float? inputNumber)
 {
     bool isInputValid = false;
     float number;
@@ -82,6 +26,7 @@ float? Sum(float? inputNumber)
     return result;
 }
 
+// substraction function
 float? Sub(float? inputNumber)
 {
     bool isInputValid = false;
@@ -106,6 +51,7 @@ float? Sub(float? inputNumber)
     return result;
 }
 
+// multiplication function
 float? Mult(float? inputNumber)
 {
     bool isInputValid = false;
@@ -130,6 +76,7 @@ float? Mult(float? inputNumber)
     return result;
 }
 
+// division function
 float? Div(float? inputNumber)
 {
     bool isInputValid = false;
@@ -153,6 +100,8 @@ float? Div(float? inputNumber)
 
     return result;
 }
+
+// main function calling the others to do the operations
 void Calc()
 {
     float? currentResult = null;
@@ -162,7 +111,7 @@ void Calc()
     bool isInputValid = false;
 
 
-    Console.WriteLine("1 --- Addition ---");
+    Console.WriteLine("--- Calculator ---");
 
     do
     {
@@ -170,10 +119,12 @@ void Calc()
         {
             Console.WriteLine("Quel opérateur ? (ou '=' pour arreter)");
             input = Console.ReadLine();
+
+            // select which operator to use
             switch (input)
             {
                 case "+":
-                    currentResult = Sum(currentResult);
+                    currentResult = Add(currentResult);
                     break;
 
                 case "-":
@@ -192,6 +143,7 @@ void Calc()
                     break;
             }
         }
+        // verify if a value is already saved
         else
         {
             Console.WriteLine("Entrez un chiffre à additionner (ou '=' pour arreter)");
@@ -211,28 +163,6 @@ void Calc()
 
     Console.WriteLine($"Le résultat de votre opération est {currentResult}");
 
-}
-
-/*void Menu()
-{
-    int input;
-
-    Console.WriteLine("--- Calculatrice ---\n");
-    Console.WriteLine("1 ---- Addition");
-    Console.WriteLine("2 ---- Soustraction");
-    Console.WriteLine("3 ---- Multiplication");
-    Console.WriteLine("4 ---- Division");
-
-    Console.WriteLine("Faites votre choix : ");
-    input = int.Parse(Console.ReadLine());
-
-    switch (input)
-    {
-        case 1:
-            Console.Clear();
-            Sum();
-            break;
-    }
-}*/
+};
 
 Calc();
